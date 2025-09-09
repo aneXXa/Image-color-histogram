@@ -1,2 +1,2 @@
-# Creating-a-color-histogram-of-an-image
+# Image-color-histogram
 Taks CV-1-07
