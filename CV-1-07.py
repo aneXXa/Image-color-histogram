@@ -11,12 +11,12 @@ def load_img_color(img_path):
     return img
 
 
-def plot_color_histograms(img: np.ndarray) -> None:
+def plot_color_histograms(img):
     # splits image to the seperate channels BGR
     b, g, r = cv.split(img)
 
     # creates plot environment with 3 axes for three colours
-    fig, axes = plt.subplots(1, 3, figsize=(10, 6), constrained_layout=True)
+    fig, axes = plt.subplots(1, 3, figsize=(12, 6), constrained_layout=True)
     channels = [
         (b, "b", "Blue"),
         (g, "g", "Green"),
@@ -26,9 +26,11 @@ def plot_color_histograms(img: np.ndarray) -> None:
     for ax, (channel, color, title) in zip(axes, channels):
         ax.hist(channel.ravel(), bins=32, color=color, alpha=0.7, density=True)
         ax.set_title(f"{title} channel")
-
+        ax.set_xlabel("Pixel value")
+        ax.set_ylabel("Frequency")
+   
+    plt.tight_layout()
     plt.show()
-
 
 def main() -> None:
     src = input()
