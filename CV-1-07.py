@@ -34,6 +34,7 @@ def plot_color_histograms(img: np.ndarray) -> None:
 
 def main() -> None:
     src = input("Enter image path: ")
+    #input validation
     if not src:
         raise ValueError("Image path cannot be empty.")
     if not os.path.isfile(src):
