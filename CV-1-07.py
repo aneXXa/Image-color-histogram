@@ -3,15 +3,28 @@ import cv2 as cv
 import matplotlib.pyplot as plt
 import os
 
-
 def load_img_color(img_path: str) -> np.ndarray:
+    """
+    Loads an image from the specified file path in color mode.
+
+    Args:
+        img_path (str): The path to the image file.
+
+    Returns:
+        np.ndarray: The loaded color image as a NumPy array, or None if loading fails.
+    """
     img = cv.imread(img_path, cv.IMREAD_COLOR)
     if img is None:
         return None
     return img
 
-
 def plot_color_histograms(img: np.ndarray) -> None:
+    """
+    Plots the color histograms for the red, green, and blue channels of the input image.
+
+    Args:
+        img (np.ndarray): The input color image as a NumPy array (BGR format).
+    """
     # creates plot environment with 3 axes for three colours
     fig, axes = plt.subplots(1, 3, figsize=(12, 6), constrained_layout=True)
     
@@ -31,8 +44,14 @@ def plot_color_histograms(img: np.ndarray) -> None:
     
     plt.show()
 
-
 def main() -> None:
+    """
+    Main function to prompt the user for an image path, load the image,
+    and display its color histograms.
+
+    Raises:
+        ValueError: If the image path is empty, the file does not exist, or the image cannot be loaded.
+    """
     src = input("Enter image path: ")
     #input validation
     if not src:
