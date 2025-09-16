@@ -15,6 +15,7 @@ def load_img_color(img_path: str) -> np.ndarray:
     """
     img = cv.imread(img_path, cv.IMREAD_COLOR)
     if img is None:
+        # Return None if the image could not be loaded (e.g., file not found or not an image)
         return None
     return img
 
@@ -25,7 +26,7 @@ def plot_color_histograms(img: np.ndarray) -> None:
     Args:
         img (np.ndarray): The input color image as a NumPy array (BGR format).
     """
-    # creates plot environment with 3 axes for three colours
+    # Create a figure with 3 subplots (one for each color channel)
     fig, axes = plt.subplots(1, 3, figsize=(12, 6), constrained_layout=True)
     
     channels = [
@@ -33,8 +34,9 @@ def plot_color_histograms(img: np.ndarray) -> None:
         (1, "g", "Green"),
         (0, "b", "Blue"),
     ]
-    # plots histograms for each channel
+    # Loop through each channel and plot its histogram
     for ax, (channel_idx, color, title) in zip(axes, channels):
+        # Calculate the histogram for the current channel
         hist = cv.calcHist([img], [channel_idx], None, [256], [0, 256])
 
         ax.hist(range(256), bins=32, weights=hist.flatten(), color=color, alpha=0.7, density=True)
